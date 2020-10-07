@@ -1,0 +1,12 @@
+RL workflow will be as follows, though I'm not exactly sure how to implement
+it yet as of 10/7/20.
+
+1. Environment (We will likely due simulations on matlab using my computer via remote desktop)
+
+2. Reward Signal (The incentive for the agent to do what we want. Idk yet)
+
+3. Policy (The structure of logic and parameters that an agent can make + do)
+
+4. Training Alg (We'll just use the q-learning algorithim for now)
+
+5. Deploy and test (robot will likely crash a bunch so we have to adjust stuff)
