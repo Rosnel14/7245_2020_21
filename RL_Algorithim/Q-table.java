@@ -15,7 +15,7 @@ public class Q-table extends LinearOpMdoe() {
     DcMotor leftBack;
     DcMotor rightFront;
     DcMotor rightBack;
-    Gyro
+    GyroSensor Gsense;
 
 
     public void runOpMode() {
