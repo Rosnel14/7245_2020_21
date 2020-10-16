@@ -46,7 +46,7 @@ public class Drive_Control extends OpMode {
 
             leftFront.setPower(y + x + rx);
             leftBack.setPower(y - x + rx);
-            rightFront.setPower(y - x - rx);
+            rightFront.setPower(y - x - rx); 
             rightBack.setPower(y + x - rx);
 
         }
