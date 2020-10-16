@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="" />
+    <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1iZ50ZqYDxS2haYrVpGVewNrBaZ" />
@@ -19,6 +22,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -32,5 +36,16 @@
       <updated>1602102051195</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="221" y="67" key="SettingsEditor" timestamp="1602882141536">
+      <screen x="0" y="23" width="1440" height="811" />
+    </state>
+    <state x="221" y="67" key="SettingsEditor/0.23.1440.809@0.23.1440.809" timestamp="1602793474766" />
+    <state x="221" y="67" key="SettingsEditor/0.23.1440.811@0.23.1440.811" timestamp="1602882141536" />
+    <state x="390" y="261" key="com.intellij.ide.util.TipDialog" timestamp="1602793453635">
+      <screen x="0" y="23" width="1440" height="809" />
+    </state>
+    <state x="390" y="261" key="com.intellij.ide.util.TipDialog/0.23.1440.809@0.23.1440.809" timestamp="1602793453635" />
   </component>
 </project>
