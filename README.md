@@ -9,3 +9,5 @@ Pull: 'git pull' while in repository
 Commit: 'git commit -a' 
 
 Push: 'git push origin master' 
+
+![]Teletubbies GIF.gif
