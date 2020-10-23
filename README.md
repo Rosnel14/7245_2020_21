@@ -10,4 +10,4 @@ Commit: 'git commit -a'
 
 Push: 'git push origin master' 
 
-![]Teletubbies GIF.gif
+![](Teletubbies GIF.gif)
