@@ -11,4 +11,5 @@
     <orderEntry type="library" name="java" level="project" />
     <orderEntry type="library" name="java" level="project" />
     <orderEntry type="library" name="OpModeAnnotationProcessor" level="project" />
+  </component>
 </module>
