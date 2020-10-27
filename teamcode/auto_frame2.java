@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="Auto_Frame_2", group="Pushbot")
 //@Disabled
-public class PushbotAutoDriveByTime_Linear extends LinearOpMode {
+public class auto_frame2 extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwarePushbot robot = new HardwarePushbot();   // Use a Pushbot's hardware
