@@ -61,8 +61,10 @@ public class auto_frame extends LinearOpMode {
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
         // Step 1:  Drive forward for 1 seconds
-        robot.leftDrive.setPower(FORWARD_SPEED);
-        robot.rightDrive.setPower(FORWARD_SPEED);
+        rightFront.setPower(FORWARD_SPEED);
+        leftFront.setPower(FORWARD_SPEED);
+        rightBack.setPower(FORWARD_SPEED);
+        leftBack.setPower(FORWARD_SPEED);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.0)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
@@ -70,8 +72,10 @@ public class auto_frame extends LinearOpMode {
         }
 
         // Step 4:  Stop and close the claw.
-        robot.leftDrive.setPower(0);
-        robot.rightDrive.setPower(0);
+        rightFront.setPower(0);
+        leftFront.setPower(0);
+        rightBack.setPower(FORWARD_SPEED);
+        leftBack.setPower(FORWARD_SPEED);
         //robot.leftClaw.setPosition(1.0);
         //robot.rightClaw.setPosition(0.0);
 
