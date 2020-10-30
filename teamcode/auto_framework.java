@@ -102,6 +102,39 @@ public class auto_framework extends LinearOpMode
             telemetry.update();
         }
 
+        public void step2() {
+
+            rightFront.setPower(FORWARD_SPEED);
+            rightBack.setPower(FORWARD_SPEED);
+            leftBack.setPower(FORWARD_SPEED);
+            leftFront.setPower(FORWARD_SPEED);
+            runtime.reset();
+            while (opModeIsActive() && (runtime.seconds() < 3.5)) {
+                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+                telemetry.update();
+
+            }
+
+            leftFront.setPower(TURN_SPEED);
+            leftBack.setPower(TURN_SPEED);
+            rightFront.setPower(-TURN_SPEED);
+            rightBack.setPower(-TURN_SPEED);
+            runtime.reset();
+            while (opModeIsActive() && (runtime.seconds() < 0.5)) {
+                telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+                telemetry.update();
+            }
+
+            leftFront.setPower(FORWARD_SPEED);
+            leftBack.setPower(FORWARD_SPEED);
+            rightFront.setPower(FORWARD_SPEED);
+            rightBack.setPower(FORWARD_SPEED);
+            runtime.reset();
+            while (opModeIsActive() && (runtime.seconds() < 0.2)) {
+                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+                telemetry.update();
+        }
+
 
     }
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
