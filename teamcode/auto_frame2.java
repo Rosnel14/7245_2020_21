@@ -37,10 +37,10 @@ public class PushbotAutoDriveByTime_Linear extends LinearOpMode {
 
 
         // Step 2:  Drive forward for 3.5 seconds
-        robot.leftfront.setPower(FORWARD_SPEED);
-        robot.leftback.setPower(FORWARD_SPEED);
-        robot.rightfront.setPower(FORWARD_SPEED);
-        robot.rightback.setPower(FORWARD_SPEED);
+        robot.leftFront.setPower(FORWARD_SPEED);
+        robot.leftBack.setPower(FORWARD_SPEED);
+        robot.rightFront.setPower(FORWARD_SPEED);
+        robot.rightBack.setPower(FORWARD_SPEED);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 3.5)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
@@ -48,10 +48,10 @@ public class PushbotAutoDriveByTime_Linear extends LinearOpMode {
         }
 
         // Step 1:  Spin right for .5 seconds
-        robot.leftfront.setPower(TURN_SPEED);
-        robot.leftback.setPower(TURN_SPEED);
-        robot.rightfront.setPower(-TURN_SPEED);
-        robot.rightback.setPower(-TURN_SPEED);
+        robot.leftFront.setPower(TURN_SPEED);
+        robot.leftBack.setPower(TURN_SPEED);
+        robot.rightFront.setPower(-TURN_SPEED);
+        robot.rightBack.setPower(-TURN_SPEED);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 0.5)) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
@@ -59,10 +59,10 @@ public class PushbotAutoDriveByTime_Linear extends LinearOpMode {
         }
 
         // Step 2:  Drive forward for .2 seconds
-        robot.leftfront.setPower(FORWARD_SPEED);
-        robot.leftback.setPower(FORWARD_SPEED);
-        robot.rightfront.setPower(FORWARD_SPEED);
-        robot.rightback.setPower(FORWARD_SPEED);
+        robot.leftFront.setPower(FORWARD_SPEED);
+        robot.leftBack.setPower(FORWARD_SPEED);
+        robot.rightFront.setPower(FORWARD_SPEED);
+        robot.rightBack.setPower(FORWARD_SPEED);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 0.2)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
