@@ -85,17 +85,20 @@ public class auto_framework extends LinearOpMode
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.addData("Position", pipeline.position);
             telemetry.update();
+            if (pipeline.position == NONE) {
+                step1();
+            }
 
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
         }
     }
 
-    public void step1(DcMotor motor) {
-        motor.setPower(FORWARD_SPEED);
-        motor.setPower(FORWARD_SPEED);
-        motor.setPower(FORWARD_SPEED);
-        motor.setPower(FORWARD_SPEED);
+    public void step1() {
+        leftFront.setPower(FORWARD_SPEED);
+        leftBack.setPower(FORWARD_SPEED);
+        rightBack.setPower(FORWARD_SPEED);
+        rightFront.setPower(FORWARD_SPEED);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.0)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
