@@ -1,6 +1,6 @@
-
 package org.firstinspires.ftc.teamcode.vision;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -16,48 +16,15 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@Autonomous(name="CV_Auto", group="Auto")
+@Autonomous
 public class auto_framework extends LinearOpMode
 {
-    static final double FORWARD_SPEED = 0.6;
-    static final double TURN_SPEED = 0.5;
-
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
-    DcMotor leftBack;
-    DcMotor leftFront;
-    DcMotor rightBack;
-    DcMotor rightFront;
-
 
     @Override
     public void runOpMode()
     {
-
-        leftBack = hardwareMap.get(DcMotor.class, "leftBack");
-        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftBack.setDirection(DcMotor.Direction.FORWARD);
-        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        rightBack = hardwareMap.get(DcMotor.class, "rightBack");
-        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightBack.setDirection(DcMotor.Direction.REVERSE);
-        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
-        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftFront.setDirection(DcMotor.Direction.FORWARD);
-        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        rightFront = hardwareMap.get(DcMotor.class, "rightFront");
-        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightFront.setDirection(DcMotor.Direction.REVERSE);
-        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.init(hardwareMap);
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
@@ -85,61 +52,23 @@ public class auto_framework extends LinearOpMode
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.addData("Position", pipeline.position);
             telemetry.update();
-            if (pipeline.position == NONE) {
-                step1();
-            }
 
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
+            if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
+                telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
+                sleep(50);
+            } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
+                telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
+                sleep(50);
+            } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
+                telemetry.addData("Abou is dead",pipeline.getAnalysis());
+                sleep(50);
+            }
+            sleep(100);
         }
     }
 
-    public void step1() {
-        leftFront.setPower(FORWARD_SPEED);
-        leftBack.setPower(FORWARD_SPEED);
-        rightBack.setPower(FORWARD_SPEED);
-        rightFront.setPower(FORWARD_SPEED);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 1.0)) {
-            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
-
-        public void step2() {
-
-            rightFront.setPower(FORWARD_SPEED);
-            rightBack.setPower(FORWARD_SPEED);
-            leftBack.setPower(FORWARD_SPEED);
-            leftFront.setPower(FORWARD_SPEED);
-            runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 3.5)) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-
-            }
-
-            leftFront.setPower(TURN_SPEED);
-            leftBack.setPower(TURN_SPEED);
-            rightFront.setPower(-TURN_SPEED);
-            rightBack.setPower(-TURN_SPEED);
-            runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 0.5)) {
-                telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-            }
-
-            leftFront.setPower(FORWARD_SPEED);
-            leftBack.setPower(FORWARD_SPEED);
-            rightFront.setPower(FORWARD_SPEED);
-            rightBack.setPower(FORWARD_SPEED);
-            runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 0.2)) {
-                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                telemetry.update();
-        }
-
-
-    }
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
     {
         /*
@@ -161,7 +90,7 @@ public class auto_framework extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181,98);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(120,198);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
