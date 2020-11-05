@@ -21,10 +21,38 @@ public class auto_framework extends LinearOpMode
 {
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
+    DcMotor leftBack;
+    DcMotor leftFront;
+    DcMotor rightBack;
+    DcMotor rightFront;
+    int dpishift = 2;
 
     @Override
     public void runOpMode()
     {
+        leftBack = hardwareMap.get(DcMotor.class, "leftBack");
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftBack.setDirection(DcMotor.Direction.FORWARD);
+        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        rightBack = hardwareMap.get(DcMotor.class, "rightBack");
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightBack.setDirection(DcMotor.Direction.REVERSE);
+        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftFront.setDirection(DcMotor.Direction.FORWARD);
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        rightFront = hardwareMap.get(DcMotor.class, "rightFront");
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setDirection(DcMotor.Direction.REVERSE);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
@@ -63,7 +91,8 @@ public class auto_framework extends LinearOpMode
                 sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
-                sleep(50);
+                sleep(150);
+
             }
             sleep(100);
         }
