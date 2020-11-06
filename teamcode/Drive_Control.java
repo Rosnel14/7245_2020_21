@@ -1,17 +1,17 @@
 package org.firstinspires.ftc.teamcode;
 
-        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-        import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-        import com.qualcomm.robotcore.hardware.DcMotor;
-        import com.qualcomm.robotcore.util.ElapsedTime;
-        import com.qualcomm.robotcore.utils.Range;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 
 
 @TeleOp(name="Demo Drive Controls", group="Iterative Opmode")
 //@Disabled
-
-public class Drive_Control extends Linear OpMode {
+public class Drive_Control extends LinearOpMode {
 
     // Declare vars (components)
     //motors are defined if taken from a top down view
@@ -20,7 +20,7 @@ public class Drive_Control extends Linear OpMode {
     DcMotor leftFront;
     DcMotor rightBack;
     DcMotor rightFront;
-    int dpishift = 5;
+    int dpishift = 2;
 
 
     @Override
@@ -50,7 +50,7 @@ public class Drive_Control extends Linear OpMode {
         rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
-//        runtime.reset();
+        //runtime.reset();
 
         waitForStart();
 
@@ -63,24 +63,24 @@ public class Drive_Control extends Linear OpMode {
                     dpishift = 10;
                 }
                 else {
-                    dpishift = 5;
+                    dpishift = 2;
                 }
             }
 
             if (gamepad1.left_bumper) {
 
-                dpishift = 10;
+                dpishift = 5;
             } else {
 
-                dpishift = 5;
+                dpishift = 1;
             }
 
 
-            leftBack.setPower(-(gamepad1.left_stick_y + gamepad1.left_stick_x + (gamepad1.right_stick_x)) / dpishift);
+            leftBack.setPower((gamepad1.left_stick_y + gamepad1.left_stick_x + (gamepad1.right_stick_x)) / dpishift);
 
             rightBack.setPower((gamepad1.left_stick_y - gamepad1.left_stick_x - (gamepad1.right_stick_x)) / dpishift);
 
-            leftFront.setPower(-(gamepad1.left_stick_y + gamepad1.left_stick_x - (gamepad1.right_stick_x)) / dpishift);
+            leftFront.setPower((gamepad1.left_stick_y + gamepad1.left_stick_x - (gamepad1.right_stick_x)) / dpishift);
 
             rightFront.setPower((gamepad1.left_stick_y - gamepad1.left_stick_x + (gamepad1.right_stick_x)) / dpishift);
 
