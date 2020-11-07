@@ -25,7 +25,8 @@ public class auto_framework extends LinearOpMode
     DcMotor leftFront;
     DcMotor rightBack;
     DcMotor rightFront;
-    int dpishift = 2;
+    static final double     FORWARD_SPEED = 0.6;
+    static final double     TURN_SPEED    = 0.5;
 
     @Override
     public void runOpMode()
@@ -92,7 +93,15 @@ public class auto_framework extends LinearOpMode
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(150);
-
+                leftBack.setPower(FORWARD_SPEED);
+                leftFront.setPower(FORWARD_SPEED);
+                rightFront.setPower(FORWARD_SPEED);
+                rightBack.setPower(FORWARD_SPEED);
+                runtime.reset();
+                while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+                    telemetry.update();
+                }
             }
             sleep(100);
         }
