@@ -2,7 +2,8 @@ package org.firstinspires.ftc.teamcode.vision;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -27,6 +28,7 @@ public class auto_framework extends LinearOpMode
     DcMotor rightFront;
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
+    private ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void runOpMode()
