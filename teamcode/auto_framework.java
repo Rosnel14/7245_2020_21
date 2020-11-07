@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.vision;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.opencv.core.Core;
@@ -87,14 +88,20 @@ public class auto_framework extends LinearOpMode
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
+                sleep(100);
                 telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
                 sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
                 telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
                 sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
+                sleep(100);
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(150);
+                leftBack.setDirection(DcMotorSimple.Direction.FORWARD);
+                leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
+                rightFront.setDirection(DcMotorSimple.Direction.FORWARD);
+                rightBack.setDirection(DcMotorSimple.Direction.FORWARD);
                 leftBack.setPower(FORWARD_SPEED);
                 leftFront.setPower(FORWARD_SPEED);
                 rightFront.setPower(FORWARD_SPEED);
