@@ -20,7 +20,7 @@ public class Drive_Control extends LinearOpMode {
     DcMotor leftFront;
     DcMotor rightBack;
     DcMotor rightFront;
-    int dpishift = 2;
+    int dpishift = 1;
 
 
     @Override
