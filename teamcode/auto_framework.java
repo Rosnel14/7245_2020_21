@@ -91,10 +91,35 @@ public class auto_framework extends LinearOpMode
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
                 sleep(100);
                 telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
-                sleep(50);
+                sleep(150);
+                leftBack.setPower(-FORWARD_SPEED/dpshift);
+                leftFront.setPower(-FORWARD_SPEED/dpshift);
+                rightFront.setPower(-FORWARD_SPEED/dpshift);
+                rightBack.setPower(-FORWARD_SPEED/dpshift);
+                runtime.reset();
+                while (opModeIsActive() && (runtime.seconds() < 2.0)) {
+                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+                    telemetry.update();
+                }
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
+                sleep(100);
                 telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
-                sleep(50);
+                sleep(150);
+                leftBack.setPower(-FORWARD_SPEED/dpshift);
+                leftFront.setPower(-FORWARD_SPEED/dpshift);
+                rightFront.setPower(-FORWARD_SPEED/dpshift);
+                rightBack.setPower(-FORWARD_SPEED/dpshift);
+                runtime.reset();
+                while (opModeIsActive() && (runtime.seconds() < 2.5)) {
+                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+                    telemetry.update();
+                }
+                leftFront.setPower(TURN_SPEED/dpishift);
+                leftBack.setPower(TURN_SPEED/dpishift);
+                while (opModeIsActive() && (runtime.seconds() < 0.5)) {
+                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+                    telemetry.update();
+                }
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
                 sleep(100);
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
