@@ -114,8 +114,8 @@ public class auto_framework extends LinearOpMode
                     telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
                     telemetry.update();
                 }
-                leftFront.setPower(TURN_SPEED/dpishift);
-                leftBack.setPower(TURN_SPEED/dpishift);
+                leftFront.setPower(TURN_SPEED/dpshift);
+                leftBack.setPower(TURN_SPEED/dpshift);
                 while (opModeIsActive() && (runtime.seconds() < 0.5)) {
                     telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
                     telemetry.update();
