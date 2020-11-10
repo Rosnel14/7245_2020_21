@@ -20,7 +20,7 @@ public class Drive_Control extends LinearOpMode {
     DcMotor leftFront;
     DcMotor rightBack;
     DcMotor rightFront;
-    int dpishift = 1;
+    int dpishift = 2;
 
 
     @Override
@@ -60,7 +60,7 @@ public class Drive_Control extends LinearOpMode {
 
                 if (gamepad1.left_bumper) {
 
-                    dpishift = 10;
+                    dpishift = 5;
                 }
                 else {
                     dpishift = 2;
@@ -69,10 +69,10 @@ public class Drive_Control extends LinearOpMode {
 
             if (gamepad1.left_bumper) {
 
-                dpishift = 5;
+                dpishift = 10;
             } else {
 
-                dpishift = 1;
+                dpishift = 5;
             }
 
 

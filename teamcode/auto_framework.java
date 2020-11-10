@@ -30,6 +30,7 @@ public class auto_framework extends LinearOpMode
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
     private ElapsedTime runtime = new ElapsedTime();
+    private int dpshift = 2;
 
     @Override
     public void runOpMode()
@@ -98,14 +99,10 @@ public class auto_framework extends LinearOpMode
                 sleep(100);
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(150);
-                leftBack.setDirection(DcMotorSimple.Direction.FORWARD);
-                leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
-                rightFront.setDirection(DcMotorSimple.Direction.FORWARD);
-                rightBack.setDirection(DcMotorSimple.Direction.FORWARD);
-                leftBack.setPower(FORWARD_SPEED);
-                leftFront.setPower(FORWARD_SPEED);
-                rightFront.setPower(FORWARD_SPEED);
-                rightBack.setPower(FORWARD_SPEED);
+                leftBack.setPower(FORWARD_SPEED/dpshift);
+                leftFront.setPower(FORWARD_SPEED/dpshift);
+                rightFront.setPower(FORWARD_SPEED/dpshift);
+                rightBack.setPower(FORWARD_SPEED/dpshift);
                 runtime.reset();
                 while (opModeIsActive() && (runtime.seconds() < 3.0)) {
                     telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
@@ -137,13 +134,13 @@ public class auto_framework extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(120,198);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(110,200);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
 
         final int FOUR_RING_THRESHOLD = 150;
-        final int ONE_RING_THRESHOLD = 135;
+        final int ONE_RING_THRESHOLD = 130;
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,
