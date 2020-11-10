@@ -99,10 +99,10 @@ public class auto_framework extends LinearOpMode
                 sleep(100);
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(150);
-                leftBack.setPower(FORWARD_SPEED/dpshift);
-                leftFront.setPower(FORWARD_SPEED/dpshift);
-                rightFront.setPower(FORWARD_SPEED/dpshift);
-                rightBack.setPower(FORWARD_SPEED/dpshift);
+                leftBack.setPower(-FORWARD_SPEED/dpshift);
+                leftFront.setPower(-FORWARD_SPEED/dpshift);
+                rightFront.setPower(-FORWARD_SPEED/dpshift);
+                rightBack.setPower(-FORWARD_SPEED/dpshift);
                 runtime.reset();
                 while (opModeIsActive() && (runtime.seconds() < 3.0)) {
                     telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
