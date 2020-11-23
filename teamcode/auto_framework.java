@@ -74,7 +74,7 @@ public class auto_framework extends LinearOpMode
             @Override
             public void onOpened()
             {
-                webcam.startStreaming(320,240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+                webcam.startStreaming(176,144, OpenCvCameraRotation.SIDEWAYS_LEFT);
             }
         });
 
