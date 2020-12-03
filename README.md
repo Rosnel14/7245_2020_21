@@ -3,11 +3,4 @@
 
 Get Ultimate Goal Repository HERE: https://github.com/FIRST-Tech-Challenge/FtcRobotController
 
-
-Pull: 'git pull' while in repository 
-
-Commit: 'git commit -a' 
-
-Push: 'git push origin master' 
-
 ![](TeletubbiesGIF.gif)
