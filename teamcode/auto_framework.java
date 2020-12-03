@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode.vision;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -31,7 +29,6 @@ public class auto_framework extends LinearOpMode
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
     private ElapsedTime runtime = new ElapsedTime();
-    private int dpshift = 2;
 
     @Override
     public void runOpMode()
@@ -75,7 +72,7 @@ public class auto_framework extends LinearOpMode
             @Override
             public void onOpened()
             {
-                phoneCam.startStreaming(176,144, OpenCvCameraRotation.SIDEWAYS_LEFT);
+                phoneCam.startStreaming(320,240, OpenCvCameraRotation.SIDEWAYS_LEFT);
             }
         });
 
@@ -92,48 +89,14 @@ public class auto_framework extends LinearOpMode
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
                 sleep(100);
                 telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
-                sleep(150);
-                leftBack.setPower(-FORWARD_SPEED/dpshift);
-                leftFront.setPower(-FORWARD_SPEED/dpshift);
-                rightFront.setPower(-FORWARD_SPEED/dpshift);
-                rightBack.setPower(-FORWARD_SPEED/dpshift);
-                runtime.reset();
-                while (opModeIsActive() && (runtime.seconds() < 2.0)) {
-                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                    telemetry.update();
-                }
+                sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
-                sleep(100);
                 telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
-                sleep(150);
-                leftBack.setPower(-FORWARD_SPEED/dpshift);
-                leftFront.setPower(-FORWARD_SPEED/dpshift);
-                rightFront.setPower(-FORWARD_SPEED/dpshift);
-                rightBack.setPower(-FORWARD_SPEED/dpshift);
-                runtime.reset();
-                while (opModeIsActive() && (runtime.seconds() < 2.5)) {
-                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                    telemetry.update();
-                }
-                leftFront.setPower(TURN_SPEED/dpshift);
-                leftBack.setPower(TURN_SPEED/dpshift);
-                while (opModeIsActive() && (runtime.seconds() < 0.5)) {
-                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                    telemetry.update();
-                }
+                sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
                 sleep(100);
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(150);
-                leftBack.setPower(-FORWARD_SPEED/dpshift);
-                leftFront.setPower(-FORWARD_SPEED/dpshift);
-                rightFront.setPower(-FORWARD_SPEED/dpshift);
-                rightBack.setPower(-FORWARD_SPEED/dpshift);
-                runtime.reset();
-                while (opModeIsActive() && (runtime.seconds() < 3.0)) {
-                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-                    telemetry.update();
-                }
             }
             sleep(100);
         }
