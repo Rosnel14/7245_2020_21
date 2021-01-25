@@ -87,7 +87,7 @@ public class auto_framework extends LinearOpMode
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
-                encoderRun();
+                encoderRun(1440);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
                 telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
                 sleep(50);
