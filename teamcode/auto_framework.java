@@ -20,7 +20,6 @@ import org.openftc.easyopencv.OpenCvPipeline;
 @Autonomous
 public class auto_framework extends LinearOpMode
 {
-    //jery
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
     DcMotor leftBack;
@@ -88,16 +87,8 @@ public class auto_framework extends LinearOpMode
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
-//                sleep(100);
-//                robot.leftDrive.setPower(FORWARD_SPEED);
-//                robot.rightDrive.setPower(FORWARD_SPEED);
-//                runtime.reset();
-//                while (opModeIsActive() && (runtime.seconds() < 3.0)) {
-//                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
-//                    telemetry.update();
-//                }
-                encoderRun(1440)
-                motor.setPower(0);
+                sleep(100);
+                telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
                 sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
                 telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
@@ -176,32 +167,6 @@ public class auto_framework extends LinearOpMode
             region1_Cb = Cb.submat(new Rect(region1_pointA, region1_pointB));
         }
 
-        public void encoderRun(int rotation){
-            sleep(100);
-            leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            leftBack.setTargetPosition(rotation);
-            rightBack.setTargetPosition(rotation);
-            leftFront.setTargetPosition(rotation);
-            rightFront.setTargetPosition(rotation);
-
-            while(leftBack.isBusy() && rightBack.isBusy() && leftFront.isBusy() && rightFront.isBusy() && opModeIsActive()) {
-                //Loop body can be empty
-            }
-            leftBack.setPower(0);
-            rightBack.setPower(0);
-            leftFront.setPower(0);
-            leftFront.setPower(0);
-            sleep(50);
-        }
-
         @Override
         public Mat processFrame(Mat input)
         {
@@ -234,9 +199,6 @@ public class auto_framework extends LinearOpMode
 
             return input;
         }
-        public
-
-
 
         public int getAnalysis()
         {
