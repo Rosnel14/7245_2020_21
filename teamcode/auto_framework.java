@@ -76,6 +76,7 @@ public class auto_framework extends LinearOpMode
             }
         });
 
+        //test
         waitForStart();
 
         while (opModeIsActive())
