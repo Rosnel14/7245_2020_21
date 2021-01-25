@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="dpshift changed" />
+    <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="dpshift changed">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teamcode/auto_framework.java" beforeDir="false" afterPath="$PROJECT_DIR$/teamcode/auto_framework.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +41,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -83,6 +88,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="0" y="28" width="1440" height="790" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608340337882" />
+    <state x="0" y="27" key="CommitChangelistDialog2" timestamp="1611265471043">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="0" y="27" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1611265471043" />
     <state x="221" y="67" key="SettingsEditor" timestamp="1602882141536">
       <screen x="0" y="23" width="1440" height="811" />
     </state>
