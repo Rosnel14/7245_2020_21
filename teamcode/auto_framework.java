@@ -87,9 +87,7 @@ public class auto_framework extends LinearOpMode
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
-                sleep(100);
-                telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
-                sleep(50);
+                encoderRun();
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
                 telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
                 sleep(50);
@@ -101,7 +99,31 @@ public class auto_framework extends LinearOpMode
             sleep(100);
         }
     }
+            public void encoderRun(int rotation){
+            sleep(100);
+            leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+            leftBack.setTargetPosition(rotation);
+            rightBack.setTargetPosition(rotation);
+            leftfront.setTargetPosition(rotation);
+            rightFront.setTargetPosition(rotation);
+
+            while(motor.isBusy() && opModeIsActive()) {
+                //Loop body can be empty
+            }
+            leftBack.setPower(0);
+            rightBack.setPower(0);
+            leftFront.setPower(0);
+            leftFront.setPower(0);
+            sleep(50);
+        }
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
     {
         /*
