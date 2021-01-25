@@ -177,6 +177,7 @@ public class auto_framework extends LinearOpMode
         }
 
         public void encoderRun(int rotation){
+            sleep(100);
             leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -188,12 +189,17 @@ public class auto_framework extends LinearOpMode
 
             leftBack.setTargetPosition(rotation);
             rightBack.setTargetPosition(rotation);
-            leftfront.setTargetPosition(rotation);
+            leftFront.setTargetPosition(rotation);
             rightFront.setTargetPosition(rotation);
 
-            while(motor.isBusy() && opModeIsActive()) {
+            while(leftBack.isBusy() && rightBack.isBusy() && leftFront.isBusy() && rightFront.isBusy() && opModeIsActive()) {
                 //Loop body can be empty
             }
+            leftBack.setPower(0);
+            rightBack.setPower(0);
+            leftFront.setPower(0);
+            leftFront.setPower(0);
+            sleep(50);
         }
 
         @Override
