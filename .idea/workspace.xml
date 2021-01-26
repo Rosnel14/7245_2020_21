@@ -19,10 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="dpshift changed">
       <change afterPath="$PROJECT_DIR$/teamcode/driveTrainRuntime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="">
+>>>>>>> 74ffd5db5eba29c8d994269c51ccf323107d48bf
       <change beforePath="$PROJECT_DIR$/teamcode/auto_framework.java" beforeDir="false" afterPath="$PROJECT_DIR$/teamcode/auto_framework.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +68,18 @@
       <option name="project" value="LOCAL" />
       <updated>1608350048322</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="2" />
+=======
+    <task id="LOCAL-00002" summary="dpshift changed">
+      <created>1611608908961</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1611608908961</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+>>>>>>> 74ffd5db5eba29c8d994269c51ccf323107d48bf
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -88,6 +103,7 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="0" y="28" width="1440" height="790" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608340337882" />
+<<<<<<< HEAD
     <state x="413" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611610249872">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -108,5 +124,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="511" y="371" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1611609859536" />
+=======
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1611610140562">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1611610140562" />
+>>>>>>> 74ffd5db5eba29c8d994269c51ccf323107d48bf
   </component>
 </project>

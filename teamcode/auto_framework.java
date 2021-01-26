@@ -76,6 +76,8 @@ public class auto_framework_test extends LinearOpMode
             }
         });
 
+        //test
+        //jerry test
         waitForStart();
 
         while (opModeIsActive())
@@ -87,7 +89,13 @@ public class auto_framework_test extends LinearOpMode
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
+<<<<<<< HEAD
 
+=======
+                sleep(100);
+                telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
+                sleep(50);
+>>>>>>> 74ffd5db5eba29c8d994269c51ccf323107d48bf
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
                 telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
                 sleep(50);
@@ -100,6 +108,7 @@ public class auto_framework_test extends LinearOpMode
             sleep(100);
         }
     }
+<<<<<<< HEAD
     public void encoderRun(int rotation){
         sleep(100);
 
@@ -132,6 +141,9 @@ public class auto_framework_test extends LinearOpMode
         rightFront.setPower(0);
         sleep(50);
     }
+=======
+
+>>>>>>> 74ffd5db5eba29c8d994269c51ccf323107d48bf
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
     {
         /*
