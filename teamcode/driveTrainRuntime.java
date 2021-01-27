@@ -97,11 +97,20 @@ public class auto_framework extends LinearOpMode
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(150);
             }
+            forward(1.5);
             sleep(100);
         }
     }
 
-    public static
+    public void forward(int s){
+        robot.leftDrive.setPower(FORWARD_SPEED);
+        robot.rightDrive.setPower(FORWARD_SPEED);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
+    }
 
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
     {
