@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="" />
+    <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/teamcode/Auto2Jerjer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teamcode/Jerryauto.java" beforeDir="false" afterPath="$PROJECT_DIR$/teamcode/Jerryauto.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,10 +94,6 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="0" y="28" width="1440" height="790" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608340337882" />
-    <state x="1188" y="325" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611706388940">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1188" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1680.1010@0.0.1920.1040" timestamp="1611706388940" />
     <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1611610140562">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
