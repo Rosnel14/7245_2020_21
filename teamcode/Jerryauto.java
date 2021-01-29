@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.vision;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -18,7 +18,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 @Autonomous
-public class auto_framework_test extends LinearOpMode
+public class Jerryauto extends LinearOpMode
 {
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
@@ -82,6 +82,7 @@ public class auto_framework_test extends LinearOpMode
 
         while (opModeIsActive())
         {
+            boolean ran = false;
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.addData("Position", pipeline.position);
             telemetry.update();
@@ -100,7 +101,10 @@ public class auto_framework_test extends LinearOpMode
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(150);
             }
-            encoderRun(1440);
+            if(ran == false) {
+                encoderRun(1440);
+                ran = true;
+            }
             sleep(100);
         }
     }
@@ -122,6 +126,8 @@ public class auto_framework_test extends LinearOpMode
         rightFront.setTargetPosition(rotation);
 
         while(leftBack.getCurrentPosition() < leftBack.getTargetPosition() || rightBack.getCurrentPosition() < rightBack.getTargetPosition() || leftFront.getCurrentPosition() < leftFront.getTargetPosition() || rightFront.getCurrentPosition() < rightFront.getTargetPosition()){
+            telemetry.addData("tick", leftBack.getCurrentPosition());
+            telemetry.update();
             leftBack.setPower(0.5);
             rightBack.setPower(0.5);
             leftFront.setPower(0.5);
@@ -132,7 +138,7 @@ public class auto_framework_test extends LinearOpMode
         rightBack.setPower(0);
         leftFront.setPower(0);
         rightFront.setPower(0);
-        sleep(50);
+        sleep(50000);
     }
 
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
