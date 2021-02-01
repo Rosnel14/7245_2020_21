@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/teamcode/Auto2Jerjer.java" beforeDir="false" afterPath="$PROJECT_DIR$/teamcode/Auto2Jerjer.java" afterDir="false" />
+=======
+>>>>>>> 047f342be27aade0ea47e2c079f3cf53c00ec7e1
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +72,7 @@
       <option name="project" value="LOCAL" />
       <updated>1611608908961</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00003" summary="dpshift changed">
       <created>1611957574848</created>
       <option name="number" value="00003" />
@@ -77,6 +81,23 @@
       <updated>1611957574848</updated>
     </task>
     <option name="localTasksCounter" value="4" />
+=======
+    <task id="LOCAL-00003" summary="add methods">
+      <created>1611968530209</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1611968530209</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add methods">
+      <created>1611968624789</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611968624789</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+>>>>>>> 047f342be27aade0ea47e2c079f3cf53c00ec7e1
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -93,13 +114,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dpshift changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="dpshift changed" />
+    <MESSAGE value="add methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="add methods" />
   </component>
   <component name="WindowStateProjectService">
     <state x="0" y="28" width="1440" height="790" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608340337882">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="0" y="28" width="1440" height="790" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1608340337882" />
+<<<<<<< HEAD
     <state x="420" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611957546682">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -108,6 +131,12 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="306" y="27" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1611957574637" />
+=======
+    <state x="587" y="88" key="CommitChangelistDialog2" timestamp="1611968624457">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="587" y="88" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611968624457" />
+>>>>>>> 047f342be27aade0ea47e2c079f3cf53c00ec7e1
     <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1611610140562">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
