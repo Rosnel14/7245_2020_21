@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -17,7 +18,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
 @Autonomous
-public class auto_framework extends LinearOpMode
+public class runByRuntime extends LinearOpMode
 {
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
@@ -27,6 +28,7 @@ public class auto_framework extends LinearOpMode
     DcMotor rightFront;
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
+    HardwarePushbot robot   = new HardwarePushbot();
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -97,19 +99,30 @@ public class auto_framework extends LinearOpMode
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(150);
             }
-            forward(1.5);
+            int count = 0;
+            if(count == 0){
+                forward(1.25);
+                count++;
+            }
             sleep(100);
         }
     }
 
-    public void forward(int s){
-        robot.leftDrive.setPower(FORWARD_SPEED);
-        robot.rightDrive.setPower(FORWARD_SPEED);
+    public void forward(double s){
+        leftBack.setPower(-(FORWARD_SPEED));
+        leftFront.setPower(-(FORWARD_SPEED));
+        rightBack.setPower(-FORWARD_SPEED);
+        rightFront.setPower(-FORWARD_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+        while (opModeIsActive() && (runtime.seconds() < s)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
+        leftBack.setPower(0);
+        rightBack.setPower(0);
+        leftFront.setPower(0);
+        rightFront.setPower(0);
+
     }
 
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
