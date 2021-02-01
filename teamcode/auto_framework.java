@@ -199,6 +199,20 @@ public class auto_framework extends LinearOpMode
             return input;
         }
 
+        private Enc_to_GoalA() {
+
+
+        }
+
+        private Enc_to_GoalB() {
+
+        }
+
+        private Enc_to_GoalC() {
+
+        }
+
+        private dummy
         public int getAnalysis()
         {
             return avg1;

@@ -41,13 +41,15 @@ public class Auto2Jerjer extends LinearOpMode {
     HardwarePushbot         robot   = new HardwarePushbot();
     private ElapsedTime runtime = new ElapsedTime();
 
-    static final double COUNTS_PER_MOTOR_REV = 1440;    // eg: TETRIX Motor Encoder
+    static final double METRIC_CONVERT = 1/8;
+    static final double COUNTS_PER_MOTOR_REV = 1440*METRIC_CONVERT;    // eg: TETRIX Motor Encoder
     static final double DRIVE_GEAR_REDUCTION = 3.0;     // This is < 1.0 if geared UP
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED = 0.6;
     static final double TURN_SPEED = 0.5;
+    static final double DRIFT_VARIABLE = 1.4;
 
     @Override
     public void runOpMode() {
@@ -78,6 +80,7 @@ public class Auto2Jerjer extends LinearOpMode {
                 robot.rightFront.getCurrentPosition(),
                 robot.leftBack.getCurrentPosition(),
                 robot.rightBack.getCurrentPosition());
+        telemetry.addData("inches", "2");
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
@@ -85,9 +88,9 @@ public class Auto2Jerjer extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED, 4, 4, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
-        encoderDrive(TURN_SPEED, 4, -4, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, -4, -4, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED, 2, 2, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
+//        encoderDrive(TURN_SPEED, 4, -4, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
+//        encoderDrive(DRIVE_SPEED, -4, -4, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
 
 //        robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
 //        robot.rightClaw.setPosition(0.0);
@@ -110,8 +113,6 @@ public class Auto2Jerjer extends LinearOpMode {
                              double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
-        int newLeftTarget2;
-        int newRightTarget2;
 
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
@@ -119,8 +120,6 @@ public class Auto2Jerjer extends LinearOpMode {
             // Determine new target position, and pass to motor controller
             newLeftTarget = robot.leftFront.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
             newRightTarget = robot.rightFront.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
-            newLeftTarget2 = robot.leftBack.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
-            newRightTarget2 = robot.rightBack.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
             robot.leftFront.setTargetPosition(newLeftTarget);
             robot.rightFront.setTargetPosition(newRightTarget);
             robot.leftBack.setTargetPosition(newLeftTarget);
@@ -135,9 +134,9 @@ public class Auto2Jerjer extends LinearOpMode {
             // reset the timeout time and start motion.
             runtime.reset();
             robot.leftFront.setPower(Math.abs(speed));
-            robot.rightFront.setPower(Math.abs(speed));
+            robot.rightFront.setPower(Math.abs(speed*DRIFT_VARIABLE));
             robot.leftBack.setPower(Math.abs(speed));
-            robot.rightBack.setPower(Math.abs(speed));
+            robot.rightBack.setPower(Math.abs(speed*DRIFT_VARIABLE));
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
