@@ -33,7 +33,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Pushbot: Auto Drive By Encoder", group="Pushbot")
+@Autonomous(name="Trajectory_145ticks", group="Pushbot")
 //@Disabled
 public class Auto2Jerjer extends LinearOpMode {
 
@@ -41,15 +41,15 @@ public class Auto2Jerjer extends LinearOpMode {
     HardwarePushbot         robot   = new HardwarePushbot();
     private ElapsedTime runtime = new ElapsedTime();
 
-    static final double METRIC_CONVERT = 1/8;
-    static final double COUNTS_PER_MOTOR_REV = 1440*METRIC_CONVERT;    // eg: TETRIX Motor Encoder
+    //    static final double METRIC_CONVERT = 1/8;
+    static final double COUNTS_PER_MOTOR_REV = 180;    // eg: TETRIX Motor Encoder
     static final double DRIVE_GEAR_REDUCTION = 3.0;     // This is < 1.0 if geared UP
     static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED = 0.6;
     static final double TURN_SPEED = 0.5;
-    static final double DRIFT_VARIABLE = 1.4;
+    static final double DRIFT_VARIABLE = 1.6;
 
     @Override
     public void runOpMode() {
@@ -80,7 +80,7 @@ public class Auto2Jerjer extends LinearOpMode {
                 robot.rightFront.getCurrentPosition(),
                 robot.leftBack.getCurrentPosition(),
                 robot.rightBack.getCurrentPosition());
-        telemetry.addData("inches", "2");
+        telemetry.addData("inches", "145");
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
@@ -88,7 +88,7 @@ public class Auto2Jerjer extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED, 2, 2, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
+        encoderDrive(DRIVE_SPEED, 145, 145, 10.0);  // S1: Forward 47 Inches with 10 Sec timeout
 //        encoderDrive(TURN_SPEED, 4, -4, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
 //        encoderDrive(DRIVE_SPEED, -4, -4, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
 
@@ -147,7 +147,7 @@ public class Auto2Jerjer extends LinearOpMode {
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     (robot.leftFront.isBusy() && robot.rightFront.isBusy() && robot.leftBack.isBusy() && robot.rightBack.isBusy())) {
-
+                telemetry.addData("Running","");
                 // Display it for the driver.
                 telemetry.update();
             }
