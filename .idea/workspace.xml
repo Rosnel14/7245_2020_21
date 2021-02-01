@@ -21,10 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/teamcode/Auto2Jerjer.java" beforeDir="false" afterPath="$PROJECT_DIR$/teamcode/Auto2Jerjer.java" afterDir="false" />
 =======
 >>>>>>> 047f342be27aade0ea47e2c079f3cf53c00ec7e1
+=======
+      <change beforePath="$PROJECT_DIR$/teamcode/auto_framework.java" beforeDir="false" afterPath="$PROJECT_DIR$/teamcode/auto_framework.java" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +77,16 @@
       <updated>1611608908961</updated>
     </task>
 <<<<<<< HEAD
+    <task id="LOCAL-00003" summary="update runByRuntime.java">
+      <created>1611957618872</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1611957618872</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+=======
+<<<<<<< HEAD
     <task id="LOCAL-00003" summary="dpshift changed">
       <created>1611957574848</created>
       <option name="number" value="00003" />
@@ -98,6 +112,7 @@
     </task>
     <option name="localTasksCounter" value="5" />
 >>>>>>> 047f342be27aade0ea47e2c079f3cf53c00ec7e1
+>>>>>>> 9c28078f3875bcdd984cca976e880124cbf7d1d6
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,8 +129,13 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dpshift changed" />
+<<<<<<< HEAD
+    <MESSAGE value="update runByRuntime.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="update runByRuntime.java" />
+=======
     <MESSAGE value="add methods" />
     <option name="LAST_COMMIT_MESSAGE" value="add methods" />
+>>>>>>> 9c28078f3875bcdd984cca976e880124cbf7d1d6
   </component>
   <component name="WindowStateProjectService">
     <state x="0" y="28" width="1440" height="790" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608340337882">
