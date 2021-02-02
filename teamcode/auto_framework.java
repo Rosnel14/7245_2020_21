@@ -90,7 +90,7 @@ public class auto_framework extends LinearOpMode
                 encoderDrive(175,75,75,10)
                 sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
-                telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
+                //telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
                 sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
                 sleep(100);

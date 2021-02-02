@@ -105,7 +105,7 @@ public class Auto2Jerjer extends LinearOpMode {
      *  Encoders are not reset as the move is based on the current position.
      *  Move will stop if any of three conditions occur:
      *  1) Move gets to the desired position
-     *  2) Move runs out of time
+     *  2) Move runs out of timed
      *  3) Driver stops the opmode running.
      */
     public void encoderDrive(double speed,
