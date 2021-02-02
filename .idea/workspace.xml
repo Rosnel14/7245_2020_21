@@ -21,10 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4d1a8a53-2e55-491a-a83b-e5fbd1de367d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/teamcode/Auto2Jerjer.java" beforeDir="false" afterPath="$PROJECT_DIR$/teamcode/Auto2Jerjer.java" afterDir="false" />
 =======
 >>>>>>> 047f342be27aade0ea47e2c079f3cf53c00ec7e1
+=======
+      <change beforePath="$PROJECT_DIR$/teamcode/auto_framework.java" beforeDir="false" afterPath="$PROJECT_DIR$/teamcode/auto_framework.java" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
