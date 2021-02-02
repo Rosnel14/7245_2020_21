@@ -201,6 +201,7 @@ public class auto_framework extends LinearOpMode
 
         private Enc_to_GoalA() {
 
+
         }
 
         private Enc_to_GoalB() {
@@ -210,6 +211,8 @@ public class auto_framework extends LinearOpMode
         private Enc_to_GoalC() {
 
         }
+
+        private dummy
         public int getAnalysis()
         {
             return avg1;
