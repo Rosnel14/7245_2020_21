@@ -15,12 +15,17 @@ public class Drive_Control extends LinearOpMode {
 
     // Declare vars (components)
     //motors are defined if taken from a top down view
+     DcMotor Intake;
+     DcMotor Shooter;
+     Servo wobble;
 
     DcMotor leftBack;
     DcMotor leftFront;
     DcMotor rightBack;
     DcMotor rightFront;
     int dpishift = 1;
+
+
 
 
     @Override
@@ -49,12 +54,32 @@ public class Drive_Control extends LinearOpMode {
         rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        Intake = hardwareMap.get(DcMotor.class, "Intake");
+        Intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Intake.setDirection(DcMotor.Direction.REVERSE);
+        Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        Shooter = hardwareMap.get(DcMotor.class, "Shooter");
+        Shooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Shooter.setDirection(DcMotor.Direction.REVERSE);
+        Shooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Shooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        wobble = hardwareMap.get(Servo.class, "wobble");
+
+
+
 
         //runtime.reset();
 
         waitForStart();
 
         while(opModeIsActive()) {
+
+            if (gamepad1.right_bumper) {
+
+            }
 
             if (gamepad1.right_stick_x != 0) {
 
