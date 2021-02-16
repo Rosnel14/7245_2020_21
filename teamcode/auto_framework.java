@@ -28,6 +28,7 @@ public class auto_framework extends LinearOpMode
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
     private ElapsedTime runtime = new ElapsedTime();
+    private int tick;
 
     @Override
     public void runOpMode()
@@ -87,11 +88,14 @@ public class auto_framework extends LinearOpMode
             sleep(50);
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
                 sleep(100);
-                encoderDrive(175,75,75,10)
+                //tick definition
+                encoderDrive(175,tick,tick,10)
                 sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
                 //telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
                 sleep(50);
+                //tick definition
+                encoderDrive(175,tick,tick,10)
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
                 sleep(100);
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
@@ -259,7 +263,6 @@ public class auto_framework extends LinearOpMode
         }
 
         private Enc_to_GoalA() {
-
 
         }
 
