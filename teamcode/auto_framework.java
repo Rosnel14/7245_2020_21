@@ -89,15 +89,27 @@ public class auto_framework extends LinearOpMode
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
                 sleep(100);
                 //tick definition
-                encoderDrive(175,tick,tick,10)
+                encoderDrive(175,3*tick,3*tick,10)
+                encoderDrive(175,-1*tick,tick,10)
+                encoderDrive(175,3*tick,3*tick,10)
+                        //servo
+                encoderDrive(175,-6*tick,-6*tick,10)
                 sleep(50);
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
                 //telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
                 sleep(50);
                 //tick definition
-                encoderDrive(175,tick,tick,10)
+                encoderDrive(175,4*tick,4*tick,10)
+                encoderDrive(175,-1*tick,tick,10)
+                encoderDrive(175,2*tick,2*tick,10)
+                        //servo
+                encoderDrive(175,-6*tick,-6*tick,10)
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
-                encoderDrive(175,tick,tick,10);
+                encoderDrive(175,5*tick,5*tick,10)
+                encoderDrive(175,-1*tick,tick,10)
+                encoderDrive(175,1*tick,1*tick,10)
+                        //servo
+                encoderDrive(175,-6*tick,-6*tick,10)
                 //telemetry.addData("Abou is dead",pipeline.getAnalysis());
                 sleep(50);
             }
