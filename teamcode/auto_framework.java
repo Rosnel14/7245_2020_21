@@ -263,8 +263,8 @@ public class auto_framework extends LinearOpMode
         }
 
         private Enc_to_GoalA() {
-            
-        }
+
+
         }
 
         private Enc_to_GoalB() {
