@@ -28,7 +28,7 @@ public class auto_framework extends LinearOpMode
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
     private ElapsedTime runtime = new ElapsedTime();
-    private int tick = 75;
+    private int tick = 25;
 
     @Override
     public void runOpMode()
