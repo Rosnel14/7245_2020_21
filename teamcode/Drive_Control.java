@@ -15,9 +15,10 @@ public class Drive_Control extends LinearOpMode {
 
     // Declare vars (components)
     //motors are defined if taken from a top down view
-     DcMotor Intake;
-     DcMotor Shooter;
-     Servo wobble;
+    DcMotor intakeGreen;
+    DcMotor intakeBlack;
+    DcMotor shooterRight;
+    DcMotor shooterLeft;
 
     DcMotor leftBack;
     DcMotor leftFront;
@@ -54,19 +55,29 @@ public class Drive_Control extends LinearOpMode {
         rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        Intake = hardwareMap.get(DcMotor.class, "Intake");
-        Intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        Intake.setDirection(DcMotor.Direction.REVERSE);
-        Intake.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        Intake.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intakeGreen = hardwareMap.get(DcMotor.class, "intakeGreen");
+        intakeGreen.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeGreen.setDirection(DcMotor.Direction.REVERSE);
+        intakeGreen.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        intakeGreen.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        Shooter = hardwareMap.get(DcMotor.class, "Shooter");
-        Shooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        Shooter.setDirection(DcMotor.Direction.REVERSE);
-        Shooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        Shooter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        intakeBlack = hardwareMap.get(DcMotor.class, "intakeBlack");
+        intakeBlack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeBlack.setDirection(DcMotor.Direction.REVERSE);
+        intakeBlack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        intakeBlack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        wobble = hardwareMap.get(Servo.class, "wobble");
+        shooterRight = hardwareMap.get(DcMotor.class, "ShooterRight");
+        shooterRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        shooterRight.setDirection(DcMotor.Direction.REVERSE);
+        shooterRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        shooterRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        shooterLeft = hardwareMap.get(DcMotor.class, "ShooterLeft");
+        shooterLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        shooterLeft.setDirection(DcMotor.Direction.REVERSE);
+        shooterLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        shooterLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
 
@@ -77,8 +88,21 @@ public class Drive_Control extends LinearOpMode {
 
         while(opModeIsActive()) {
 
-            if (gamepad1.right_bumper) {
+            if (gamepad2.right_bumper) {
+                intakeGreen.setPower(1);
+                intakeBlack.setPower(1);
+            } else {
+                intakeGreen.setPower(0);
+                intakeBlack.setPower(0);
+            }
 
+
+            if (gamepad1.right_bumper) {
+                shooterLeft.setPower(1);
+                shooterRight.setPower(1);
+            } else {
+                shooterRight.setPower(0);
+                shooterLeft.setPower(0);
             }
 
             if (gamepad1.right_stick_x != 0) {
