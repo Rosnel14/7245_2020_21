@@ -18,7 +18,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 
 @Autonomous
-public class auto_framework extends LinearOpMode
+public class test2 extends LinearOpMode
 {
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
@@ -31,6 +31,8 @@ public class auto_framework extends LinearOpMode
     static final double DRIVE_SPEED = 0.6;
     HardwarePushbot         robot   = new HardwarePushbot();
     private ElapsedTime runtime = new ElapsedTime();
+    private int tick = 25;
+    double DRIFT_VARIABLE = 0.6;
 
 
 
@@ -39,25 +41,25 @@ public class auto_framework extends LinearOpMode
     {
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftBack.setDirection(DcMotor.Direction.FORWARD);
+        leftBack.setDirection(DcMotor.Direction.REVERSE);
         leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightBack.setDirection(DcMotor.Direction.REVERSE);
+        rightBack.setDirection(DcMotor.Direction.FORWARD);
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftFront.setDirection(DcMotor.Direction.FORWARD);
+        leftFront.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightFront.setDirection(DcMotor.Direction.REVERSE);
+        rightFront.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //robot.init(hardwareMap);
@@ -97,39 +99,16 @@ public class auto_framework extends LinearOpMode
 
         waitForStart();
 
-        while (opModeIsActive())
-        {
-            telemetry.addData("Analysis", pipeline.getAnalysis());
-            telemetry.addData("Position", pipeline.position);
-            telemetry.update();
+//        while (opModeIsActive())
+//        {
+        telemetry.addData("Analysis", pipeline.getAnalysis());
+        telemetry.addData("Position", pipeline.position);
+        telemetry.update();
 
-            // Don't burn CPU cycles busy-looping in this sample
-            sleep(50);
-            if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
-                sleep(100);
-                telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
-                encoderDrive(DRIVE_SPEED, 75, 75, 10.0); //first part A
-                sleep(100);
-                encoderDrive(DRIVE_SPEED, 75, 75, 10.0); //second part A
-                sleep(100);
-                encoderDrive(DRIVE_SPEED, -75, -75, 10.0); //third part A
-            } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
-                telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
-                encoderDrive(DRIVE_SPEED, 115, 115, 10.0); //first part B
-                sleep(100);
-                encoderDrive(DRIVE_SPEED, 30, 30, 10.0); //second part B
-                sleep(100);
-                encoderDrive(DRIVE_SPEED, -75, -75, 10.0); //third part B
-            } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
-                sleep(100);
-                telemetry.addData("Abou is dead",pipeline.getAnalysis());
-                sleep(100);
-                encoderDrive(DRIVE_SPEED, 145, 145, 10.0); //first part C
-                sleep(100);
-                encoderDrive(DRIVE_SPEED, -75, -75, 10.0); //third part C
-            }
-            sleep(100);
-        }
+        // Don't burn CPU cycles busy-looping in this sample
+        sleep(50);
+        encoderDrive(0.6,3*tick,3*tick,10);
+//        }
 
     }
 
@@ -156,12 +135,12 @@ public class auto_framework extends LinearOpMode
             leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            // reset the timeout time and start motion.
+            // reset the timeout time and start motion. *Auto2Jerjer.DRIFT_VARIABLE
             runtime.reset();
-            leftFront.setPower(Math.abs(speed));
-            rightFront.setPower(Math.abs(speed*Auto2Jerjer.DRIFT_VARIABLE));
-            leftBack.setPower(Math.abs(speed));
-            rightBack.setPower(Math.abs(speed*Auto2Jerjer.DRIFT_VARIABLE));
+            leftFront.setPower(Math.abs(speed*DRIFT_VARIABLE));
+            rightFront.setPower(Math.abs(speed));
+            leftBack.setPower(Math.abs(speed*DRIFT_VARIABLE));
+            rightBack.setPower(Math.abs(speed));
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
