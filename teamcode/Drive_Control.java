@@ -147,6 +147,7 @@ public class Drive_Control extends LinearOpMode {
         while(opModeIsActive()) {
 
             if (gamepad2.right_bumper) {
+                intakeGreen.setDirection(DcMotor.Direction.FORWARD);
                 intakeGreen.setPower(1);
                 intakeBlack.setPower(1);
             } else {
