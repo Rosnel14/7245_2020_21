@@ -4,8 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.vision.HardwarePushbot;
-import org.firstinspires.ftc.teamcode.vision.Auto2Jerjer;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -20,7 +18,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 
 @Autonomous
-public class auto_framework_test extends LinearOpMode
+public class auto_framework extends LinearOpMode
 {
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
@@ -30,50 +28,53 @@ public class auto_framework_test extends LinearOpMode
     DcMotor rightFront;
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
+    static final double DRIVE_SPEED = 0.6;
     HardwarePushbot         robot   = new HardwarePushbot();
     private ElapsedTime runtime = new ElapsedTime();
+
+
 
     @Override
     public void runOpMode()
     {
-//        leftBack = hardwareMap.get(DcMotor.class, "leftBack");
-//        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        leftBack.setDirection(DcMotor.Direction.FORWARD);
-//        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//
-//        rightBack = hardwareMap.get(DcMotor.class, "rightBack");
-//        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        rightBack.setDirection(DcMotor.Direction.REVERSE);
-//        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//
-//        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
-//        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        leftFront.setDirection(DcMotor.Direction.FORWARD);
-//        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//
-//        rightFront = hardwareMap.get(DcMotor.class, "rightFront");
-//        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        rightFront.setDirection(DcMotor.Direction.REVERSE);
-//        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.init(hardwareMap);
+        leftBack = hardwareMap.get(DcMotor.class, "leftBack");
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftBack.setDirection(DcMotor.Direction.FORWARD);
+        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        rightBack = hardwareMap.get(DcMotor.class, "rightBack");
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightBack.setDirection(DcMotor.Direction.REVERSE);
+        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftFront.setDirection(DcMotor.Direction.FORWARD);
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        rightFront = hardwareMap.get(DcMotor.class, "rightFront");
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setDirection(DcMotor.Direction.REVERSE);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");    //
         telemetry.update();
 
-        robot.leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        robot.leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
@@ -107,17 +108,25 @@ public class auto_framework_test extends LinearOpMode
             if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.NONE) {
                 sleep(100);
                 telemetry.addData("Xavier is sleeping", pipeline.getAnalysis());
-                encoderDrive(Auto2Jerjer.DRIVE_SPEED, 75, 75, 10.0);
-                sleep(50);
+                encoderDrive(DRIVE_SPEED, 75, 75, 10.0); //first part A
+                sleep(100);
+                encoderDrive(DRIVE_SPEED, 75, 75, 10.0); //second part A
+                sleep(100);
+                encoderDrive(DRIVE_SPEED, -75, -75, 10.0); //third part A
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
                 telemetry.addData("Gerald is sleeping", pipeline.getAnalysis());
-                encoderDrive(Auto2Jerjer.DRIVE_SPEED, 115, 115, 10.0);
-                sleep(50);
+                encoderDrive(DRIVE_SPEED, 115, 115, 10.0); //first part B
+                sleep(100);
+                encoderDrive(DRIVE_SPEED, 30, 30, 10.0); //second part B
+                sleep(100);
+                encoderDrive(DRIVE_SPEED, -75, -75, 10.0); //third part B
             } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
                 sleep(100);
                 telemetry.addData("Abou is dead",pipeline.getAnalysis());
-                encoderDrive(Auto2Jerjer.DRIVE_SPEED, 145, 145, 10.0);
-                sleep(150);
+                sleep(100);
+                encoderDrive(DRIVE_SPEED, 145, 145, 10.0); //first part C
+                sleep(100);
+                encoderDrive(DRIVE_SPEED, -75, -75, 10.0); //third part C
             }
             sleep(100);
         }
@@ -134,25 +143,25 @@ public class auto_framework_test extends LinearOpMode
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = robot.leftFront.getCurrentPosition() + (int) (leftInches * Auto2Jerjer.COUNTS_PER_INCH);
-            newRightTarget = robot.rightFront.getCurrentPosition() + (int) (rightInches * Auto2Jerjer.COUNTS_PER_INCH);
-            robot.leftFront.setTargetPosition(newLeftTarget);
-            robot.rightFront.setTargetPosition(newRightTarget);
-            robot.leftBack.setTargetPosition(newLeftTarget);
-            robot.rightBack.setTargetPosition(newRightTarget);
+            newLeftTarget = leftFront.getCurrentPosition() + (int) (leftInches * Auto2Jerjer.COUNTS_PER_INCH);
+            newRightTarget = rightFront.getCurrentPosition() + (int) (rightInches * Auto2Jerjer.COUNTS_PER_INCH);
+            leftFront.setTargetPosition(newLeftTarget);
+            rightFront.setTargetPosition(newRightTarget);
+            leftBack.setTargetPosition(newLeftTarget);
+            rightBack.setTargetPosition(newRightTarget);
 
             // Turn On RUN_TO_POSITION
-            robot.leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // reset the timeout time and start motion.
             runtime.reset();
-            robot.leftFront.setPower(Math.abs(speed));
-            robot.rightFront.setPower(Math.abs(speed*Auto2Jerjer.DRIFT_VARIABLE));
-            robot.leftBack.setPower(Math.abs(speed));
-            robot.rightBack.setPower(Math.abs(speed*Auto2Jerjer.DRIFT_VARIABLE));
+            leftFront.setPower(Math.abs(speed));
+            rightFront.setPower(Math.abs(speed*Auto2Jerjer.DRIFT_VARIABLE));
+            leftBack.setPower(Math.abs(speed));
+            rightBack.setPower(Math.abs(speed*Auto2Jerjer.DRIFT_VARIABLE));
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
@@ -162,23 +171,23 @@ public class auto_framework_test extends LinearOpMode
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (robot.leftFront.isBusy() && robot.rightFront.isBusy() && robot.leftBack.isBusy() && robot.rightBack.isBusy())) {
+                    (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy())) {
                 telemetry.addData("Running","");
                 // Display it for the driver.
                 telemetry.update();
             }
 
             // Stop all motion;
-            robot.leftFront.setPower(0);
-            robot.rightFront.setPower(0);
-            robot.leftBack.setPower(0);
-            robot.rightBack.setPower(0);
+            leftFront.setPower(0);
+            rightFront.setPower(0);
+            leftBack.setPower(0);
+            rightBack.setPower(0);
 
             // Turn off RUN_TO_POSITION
-            robot.leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             //  sleep(250);   // optional pause after each move
         }
