@@ -213,7 +213,9 @@ public class auto_framework extends LinearOpMode
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy())) {
-                telemetry.addData("Running", "");
+                telemetry.clearAll();
+                telemetry.addData("EncoderDrive Running", "");
+                telemetry.addData("Positions: LF=" + leftFront.getCurrentPosition() + "  RF=" + rightFront.getCurrentPosition(), "");
                 // Display it for the driver.
                 telemetry.update();
             }
@@ -271,7 +273,8 @@ public class auto_framework extends LinearOpMode
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy())) {
-                telemetry.addData("Running", "");
+                telemetry.clearAll();
+                telemetry.addData("EncoderTurnDrive Running", "");
                 // Display it for the driver.
                 telemetry.update();
             }
