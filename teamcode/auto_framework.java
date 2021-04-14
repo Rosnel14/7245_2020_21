@@ -145,16 +145,24 @@ public class auto_framework extends LinearOpMode
     // Trajectory B
     public void trajB() {
         //go to the line and turn
-        encoderDrive(FORWARD_SPEED,4*tick, 4*tick, 10);
-        encoderTurn(TURN_SPEED, TURN_90_DEGREE,-1,10);
-        //drop the wobble
-        servo.setPower(-1);
-        while(runtime.time()<1.0){
+//        encoderDrive(FORWARD_SPEED,4*tick, 4*tick, 10); // This sends it to A
+        encoderDrive(FORWARD_SPEED,5*tick, 5*tick, 10); // This sends to B
+        encoderTurn(TURN_SPEED, TURN_90_DEGREE,-1,10); // assume this translates
+        /* The car theoritically turns in a way that would allow it to drop the wobble goal
+         * into the B Block while staying on the line so that it can park right there and not
+         * have to move afterwards. */
+        /* The car now should move up to Block B's row and then translate over to block B
+         * after dropping the wobble goal it should then move backwards onto the midline */
+        /*This is all assuming that the car still works the same or in a "similar" way as before
+        Steven redoes everything. */
+        servo.setPower(-1); // drops wobble goal
+        while(runtime.time()<1.0){ // one second run time total
             telemetry.addLine("Servo is turning");
             telemetry.addData("time", runtime.seconds());
             telemetry.update();
         }
-        servo.setPower(0);
+        servo.setPower(0); // closes the wobble hand
+        encoderDrive(FORWARD_SPEED,-1*tick, -1*tick, 10); // moves back to midline
     }
 
     // Trajectory C
