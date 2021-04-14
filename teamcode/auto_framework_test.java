@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.vision;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.opencv.core.Core;
@@ -16,9 +18,11 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+import static com.qualcomm.robotcore.hardware.Servo.Direction.FORWARD;
+
 
 @Autonomous
-public class test2 extends LinearOpMode
+public class auto_framework_test extends LinearOpMode
 {
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
@@ -26,13 +30,22 @@ public class test2 extends LinearOpMode
     DcMotor leftFront;
     DcMotor rightBack;
     DcMotor rightFront;
+    CRServo servo;
+    static final double COUNTS_PER_MOTOR_REV = 180;    // eg: TETRIX Motor Encoder
+    static final double DRIVE_GEAR_REDUCTION = 3.0;     // This is < 1.0 if geared UP
+    static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
+    static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+            (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
     static final double DRIVE_SPEED = 0.6;
     HardwarePushbot         robot   = new HardwarePushbot();
     private ElapsedTime runtime = new ElapsedTime();
-    private int tick = 25;
-    double DRIFT_VARIABLE = 0.6;
+    private int tick = 21;
+    double DRIFT_VARIABLE = 0.8;
+    double turn = 20;
+    static int rings = -1;
+
 
 
 
@@ -78,6 +91,8 @@ public class test2 extends LinearOpMode
         leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        servo = hardwareMap.get(CRServo.class, "servo");
+
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
@@ -105,10 +120,58 @@ public class test2 extends LinearOpMode
         telemetry.addData("Position", pipeline.position);
         telemetry.update();
 
+        sleep(2000);
+
         // Don't burn CPU cycles busy-looping in this sample
-        sleep(50);
-        encoderDrive(0.6,3*tick,3*tick,10);
+        if(pipeline.position.equals(SkystoneDeterminationPipeline.RingPosition.NONE)){
+            trajA();
+        }else if(pipeline.position.equals(SkystoneDeterminationPipeline.RingPosition.ONE)){
+            trajA();
+        }else if(pipeline.position.equals(SkystoneDeterminationPipeline.RingPosition.FOUR)) {
+            trajA();
+        }
+        telemetry.addData("Analysis", pipeline.getAnalysis());
+        telemetry.addData("Position", pipeline.position);
+        telemetry.update();
+        sleep(1000);
+        servo.setPower(-1);
+        runtime.reset();
+        while(runtime.time()<1.0){
+            telemetry.addLine("Servo is turning");
+            telemetry.addData("time", runtime.seconds());
+            telemetry.update();
+        }
+        servo.setPower(0);
+
+        //trajA(); // Trajectory A
+        // trajB(); // Trajectory B
+        // trajC(); // Trajectory C
+//            encoderDrive(0.6,3*tick,3*tick,10);
+//        for(int i = 0; i < 3; i++){
+//            encoderDrive(DRIVE_SPEED,tick,tick,10);
 //        }
+//        encoderDrive(DRIVE_SPEED,3*tick,3*tick,10);
+//        servo.setPower(0.2)
+//        encoderTurn(DRIVE_SPEED, turn,1,10);
+//        encoderDrive(DRIVE_SPEED,1*tick,1*tick,10);
+        telemetry.addData("Robot is ", "turning");
+//        }
+
+    }
+
+    public void trajA() {
+        encoderDrive(175,74.7,74.7,10);
+
+    }
+
+    public void trajB() {
+        encoderDrive(175,4*tick, 4*tick, 10);
+        encoderTurn(DRIVE_SPEED, turn,-1,10);
+
+    }
+
+    public void trajC() {
+        encoderDrive(175,6*tick, 6*tick, 10);
 
     }
 
@@ -122,8 +185,8 @@ public class test2 extends LinearOpMode
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = leftFront.getCurrentPosition() + (int) (leftInches * Auto2Jerjer.COUNTS_PER_INCH);
-            newRightTarget = rightFront.getCurrentPosition() + (int) (rightInches * Auto2Jerjer.COUNTS_PER_INCH);
+            newLeftTarget = leftFront.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+            newRightTarget = rightFront.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
             leftFront.setTargetPosition(newLeftTarget);
             rightFront.setTargetPosition(newRightTarget);
             leftBack.setTargetPosition(newLeftTarget);
@@ -137,10 +200,10 @@ public class test2 extends LinearOpMode
 
             // reset the timeout time and start motion. *Auto2Jerjer.DRIFT_VARIABLE
             runtime.reset();
-            leftFront.setPower(Math.abs(speed*DRIFT_VARIABLE));
-            rightFront.setPower(Math.abs(speed));
-            leftBack.setPower(Math.abs(speed*DRIFT_VARIABLE));
-            rightBack.setPower(Math.abs(speed));
+            leftFront.setPower(Math.abs(speed));
+            rightFront.setPower(Math.abs(speed*DRIFT_VARIABLE));
+            leftBack.setPower(Math.abs(speed));
+            rightBack.setPower(Math.abs(speed*DRIFT_VARIABLE));
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
@@ -151,7 +214,65 @@ public class test2 extends LinearOpMode
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
                     (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy())) {
-                telemetry.addData("Running","");
+                telemetry.addData("Running", "");
+                // Display it for the driver.
+                telemetry.update();
+            }
+
+            // Stop all motion;
+            leftFront.setPower(0);
+            rightFront.setPower(0);
+            leftBack.setPower(0);
+            rightBack.setPower(0);
+
+
+            // Turn off RUN_TO_POSITION
+            leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            //  sleep(250);   // optional pause after each move
+        }
+
+    }
+
+    public void encoderTurn(double speed, double inches, int direction, double timeoutS) {
+        int newTarget;
+
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+
+            // Determine new target position, and pass to motor controller
+            newTarget = leftFront.getCurrentPosition() + (int) (inches * COUNTS_PER_INCH);
+            leftFront.setTargetPosition(direction*newTarget);
+            rightFront.setTargetPosition(-direction*newTarget);
+            leftBack.setTargetPosition(-direction*newTarget);
+            rightBack.setTargetPosition(direction*newTarget);
+
+            // Turn On RUN_TO_POSITION
+            leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion. *Auto2Jerjer.DRIFT_VARIABLE
+            runtime.reset();
+            leftFront.setPower(direction*Math.abs(speed));
+            rightFront.setPower(direction*Math.abs(speed));
+            leftBack.setPower(direction*Math.abs(speed));
+            rightBack.setPower(direction*Math.abs(speed));
+
+            // keep looping while we are still active, and there is time left, and both motors are running.
+            // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
+            // its target position, the motion will stop.  This is "safer" in the event that the robot will
+            // always end the motion as soon as possible.
+            // However, if you require that BOTH motors have finished their moves before the robot continues
+            // onto the next step, use (isBusy() || isBusy()) in the loop test.
+            while (opModeIsActive() &&
+                    (runtime.seconds() < timeoutS) &&
+                    (leftFront.isBusy() && rightFront.isBusy() && leftBack.isBusy() && rightBack.isBusy())) {
+                telemetry.addData("Running", "");
                 // Display it for the driver.
                 telemetry.update();
             }
@@ -170,6 +291,7 @@ public class test2 extends LinearOpMode
 
             //  sleep(250);   // optional pause after each move
         }
+
     }
 
     public static class SkystoneDeterminationPipeline extends OpenCvPipeline
@@ -193,7 +315,7 @@ public class test2 extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(110,200);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(120,140);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
@@ -214,7 +336,7 @@ public class test2 extends LinearOpMode
         Mat region1_Cb;
         Mat YCrCb = new Mat();
         Mat Cb = new Mat();
-        int avg1;
+        int avg1 = -1;
 
         // Volatile since accessed by OpMode thread w/o synchronization
         private volatile RingPosition position = RingPosition.FOUR;
@@ -254,10 +376,13 @@ public class test2 extends LinearOpMode
             position = RingPosition.FOUR; // Record our analysis
             if(avg1 > FOUR_RING_THRESHOLD){
                 position = RingPosition.FOUR;
+                rings = 4;
             }else if (avg1 > ONE_RING_THRESHOLD){
                 position = RingPosition.ONE;
+                rings = 1;
             }else{
                 position = RingPosition.NONE;
+                rings = 0;
             }
 
             Imgproc.rectangle(

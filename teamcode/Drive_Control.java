@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode.vision;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -25,7 +27,9 @@ public class Drive_Control extends LinearOpMode {
     DcMotor leftFront;
     DcMotor rightBack;
     DcMotor rightFront;
+    CRServo servo;
     int dpishift = 1;
+    double contPower;
 
 
 
@@ -80,15 +84,13 @@ public class Drive_Control extends LinearOpMode {
         shooterLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         shooterLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-
-
-
-        //runtime.reset();
+        servo = hardwareMap.get(CRServo.class, "servo");
 
         waitForStart();
 
         while(opModeIsActive()) {
 
+            //intake
             if (gamepad2.right_bumper) {
                 intakeGreen.setPower(1);
                 intakeBlack.setPower(1);
@@ -98,6 +100,7 @@ public class Drive_Control extends LinearOpMode {
             }
 
 
+            //shooter
             if (gamepad1.right_bumper) {
                 shooterLeft.setPower(1);
                 shooterRight.setPower(1);
@@ -106,6 +109,7 @@ public class Drive_Control extends LinearOpMode {
                 shooterLeft.setPower(0);
             }
 
+            //speed shift
             if (gamepad1.right_stick_x != 0) {
 
                 if (gamepad1.left_bumper) {
@@ -125,7 +129,13 @@ public class Drive_Control extends LinearOpMode {
                 dpishift = 1;
             }
 
+            //servo
+            contPower = gamepad1.left_trigger;
+            servo.setPower(contPower);
+            telemetry.addData("servoPower", contPower);
 
+
+            //mecanum wheels
             leftBack.setPower((gamepad1.left_stick_y + gamepad1.left_stick_x + (gamepad1.right_stick_x)) / dpishift);
 
             rightBack.setPower((gamepad1.left_stick_y - gamepad1.left_stick_x - (gamepad1.right_stick_x)) / dpishift);
